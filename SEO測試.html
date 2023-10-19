@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="http://192.168.100.242:5566/js/msglib/wsHelper.js"></script>
+  </head>
+  <body>
+    <script>
+      $(document).ready(function () {
+        var wsHelper = new WsHelper();
+        console.log('wsHelper', wsHelper)
+        wsHelper.init().then(() => {
+          wsHelper.onError((error) => {
+            console.log("error in website", error);
+          });
+          wsHelper.isOpen((open) => {
+            console.log("open check", open);
+          });
+          const connectData = {
+            detail: {
+              userID: 'morgan.chuang@gcnc-group.com',
+              url: `http://o2oapi.test.com.tw/api/Login/GetMessageToken`,
+              method: "POST",
+              data: { userID: 'morgan.chuang@gcnc-group.com', Ticket: 'B2FE1FA17760B54CDD199A20BE212A8313eea8fa104d4886ae89cf479481cb1d' },
+            },
+          };
+          wsHelper.openChatService(connectData);
+        });
+      });
+    </script>
+    <my-custom-element id="WSCusDom"></my-custom-element>
+  </body>
+</html>
