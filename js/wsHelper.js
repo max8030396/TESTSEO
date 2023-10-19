@@ -31,7 +31,7 @@ class WsHelper {
 
       const script = document.createElement('script');
       const VERSION = await getVersion.then(version => version);
-      script.src = `/dist/my-custom-element.min.js`;
+      script.src = `./dist/my-custom-element.min.js`;
       document.head.appendChild(script);
 
       const link = document.createElement('link');
